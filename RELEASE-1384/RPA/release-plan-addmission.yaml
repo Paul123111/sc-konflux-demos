@@ -18,13 +18,4 @@ spec:
         - name: pathInRepo
           value: RELEASE-1384/pipelines/managed-pipeline.yaml
     serviceAccountName: release-service-account
-    taskRunSpecs:
-      - pipelineTaskName: collect-data
-        computeResources:
-          limits:
-            cpu: "600m"
-            memory: "540Mi"
-          requests:
-            cpu: "250m"
-            memory: "256Mi"
   policy: mvp-policy

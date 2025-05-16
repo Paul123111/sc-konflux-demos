@@ -1,0 +1,28 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Snapshot
+metadata:
+  annotations:
+    build.appstudio.openshift.io/repo: https://github.com/seanconroy2021/sconroy-website?rev=1f03f5a151261dd98c291899454af14533ff49bc
+    build.appstudio.redhat.com/pipeline_name: docker-build
+  labels:
+    appstudio.openshift.io/application: sconroy-website
+    appstudio.openshift.io/build-pipelinerun: sconroy-website-on-push-fn7cr
+    appstudio.openshift.io/component: sconroy-website
+  name: sconroy-website-zh7rg
+spec:
+  application: demo
+  artifacts: {}
+  components:
+  - containerImage: quay.io/hacbs-release-tests/user-ns2-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce
+    name: devfile-sample-python-basic
+    source:
+      git:
+        revision: fc2d04d48ee9c2a83d268c17a1504f28483b2177
+        url: https://github.com/seanconroy2021/sconroy-website?rev=1f03f5a151261dd98c291899454af14533ff49bc
+  - containerImage: quay.io/hacbs-release-tests/user-ns2-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce
+    name: devfile-sample-python-advanced
+    source:
+      git:
+        revision: fc2d04d48ee9c2a83d268c17a1504f28483b2177
+        url: https://github.com/scoheb/devfile-sample-python-basic

@@ -12,7 +12,7 @@ metadata:
     test.appstudio.openshift.io/pipelinerunfinishtime: "1694195405"
     test.appstudio.openshift.io/type: component
   name: demo-snapshot
-  namespace: dev-release1053
+  namespace: user-ns2
 spec:
   application: demo
   artifacts: {}

@@ -51,10 +51,12 @@ spec:
             type: string
         steps:
           - name: create-tag
-            image: quay.io/konflux-ci/release-service-utils:e633d51cd41d73e4b3310face21bb980af7a662f
+            #image: quay.io/konflux-ci/release-service-utils:e633d51cd41d73e4b3310face21bb980af7a662f
             script: |
               #!/usr/bin/env sh
-              set -eo pipefail
+              #set -eo pipefail
 
-              echo $(params.RELEASED_VERSION)
-              get-resource "snapshot" $(params.SNAPSHOT)
+              #echo $(params.RELEASED_VERSION)
+              #get-resource "snapshot" $(params.SNAPSHOT)
+
+              a

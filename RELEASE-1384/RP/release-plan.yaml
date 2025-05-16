@@ -3,72 +3,92 @@ apiVersion: appstudio.redhat.com/v1alpha1
 kind: ReleasePlan
 metadata:
   labels:
-    release.appstudio.openshift.io/auto-release: 'false'
-    release.appstudio.openshift.io/standing-attribution: 'true'
+    release.appstudio.openshift.io/auto-release: 'true'
+    release.appstudio.openshift.io/standing-attribution: 'false'
     version: v2
   name: tenant-pipeline1
 spec:
+  target: managed-ns2
   application: demo
-  target: managed-releng
   tenantPipeline:
-    serviceAccountName: release-service-account
+    serviceAccountName: appstudio-pipeline
     pipelineRef:
       resolver: git
       params:
         - name: url
-          value: https://github.com/seanconroy2021/sc-konflux-demos.git
+          value: https://github.com/Paul123111/community-catalog.git
         - name: revision
-          value: main
+          value: staging
         - name: pathInRepo
-          value: RELEASE-1384/pipelines/tentant-pipeline.yaml
+          value: pipelines/hello-tenant-pipeline/hello-tenant-pipeline.yaml
     params:
-      - name: released_version
-        value: 1.2.1
-    taskRunSpecs:
-      - pipelineTaskName: create-tag1
-        computeResources:
-          limits:
-            cpu: "600m"
-            memory: "540Mi"
-          requests:
-            cpu: "250m"
-            memory: "256Mi"
-      - pipelineTaskName: create-tag2
-        computeResources:
-          limits:
-            cpu: "610m"
-            memory: "550Mi"
-          requests:
-            cpu: "259m"
-            memory: "260Mi"
+      - name: name
+        value: "paul"
+  # tenantPipeline:
+  #   serviceAccountName: appstudio-pipeline
+  #   pipelineRef:
+  #     resolver: git
+  #     params:
+  #       - name: url
+  #         value: https://github.com/Paul123111/community-catalog.git
+  #       - name: revision
+  #         value: development
+  #       - name: pathInRepo
+  #         value: pipelines/quay-pipeline/quay-pipeline.yaml
+  #   params:
+  #     - name: snapshotPath
+  #       value: snapshot.json
+  #     - name: snapshotJson
+  #       value: |
+  #         {
+  #           "application": "demo",
+  #           "artifacts": {},
+  #           "components": [
+  #             {
+  #               "containerImage": "quay.io/hacbs-release-tests/user-ns2-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce",
+  #               "repository": "quay.io/pafitzge-konflux/testimages",
+  #               "name": "devfile-sample-python-basic",
+  #               "source": {
+  #                 "git": {
+  #                   "revision": "fc2d04d48ee9c2a83d268c17a1504f28483b2177",
+  #                   "url": "https://github.com/scoheb/devfile-sample-python-basic"
+  #                 }
+  #               },
+  #               "tags": [
+  #                 "testtag"
+  #               ]
+  #             },
+  #             {
+  #               "containerImage": "quay.io/hacbs-release-tests/user-ns2-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce",
+  #               "repository": "quay.io/pafitzge-konflux/testimages",
+  #               "name": "devfile-sample-python-advanced",
+  #               "source": {
+  #                 "git": {
+  #                   "revision": "fc2d04d48ee9c2a83d268c17a1504f28483b2177",
+  #                   "url": "https://github.com/scoheb/devfile-sample-python-basic"
+  #                 }
+  #               },
+  #               "tags": [
+  #                 "testtag"
+  #               ]
+  #             }
+  #           ]
+  #         }
   finalPipeline:
-    serviceAccountName: release-service-account
+    serviceAccountName: appstudio-pipeline
     pipelineRef:
       resolver: git
       params:
         - name: url
-          value: https://github.com/seanconroy2021/sc-konflux-demos.git
+          value: https://github.com/Paul123111/community-catalog.git
         - name: revision
-          value: main
+          value: fixing-slack-task
         - name: pathInRepo
-          value: RELEASE-1384/pipelines/tentant-pipeline.yaml
+          value: pipelines/notify-slack-on-failure-sample/notify-slack-on-failure-sample.yaml
     params:
-      - name: released_version
-        value: 1.2.1
-    taskRunSpecs:
-      - pipelineTaskName: create-tag1
-        computeResources:
-          limits:
-            cpu: "600m"
-            memory: "540Mi"
-          requests:
-            cpu: "250m"
-            memory: "256Mi"
-      - pipelineTaskName: create-tag2
-        computeResources:
-          limits:
-            cpu: "610m"
-            memory: "550Mi"
-          requests:
-            cpu: "259m"
-            memory: "260Mi"
+      # - name: message
+      #   value: "{'text': 'hello :@@CIRCLE_TYPE@@:'}"
+      - name: secretName
+        value: slack-secret
+      - name: secretKeyName
+        value: webhook

@@ -6,7 +6,7 @@ metadata:
     release.appstudio.openshift.io/author: kube_admin
     
   name: pipeline-release
-  namespace: dev-release
+  namespace: user-ns2
 spec:
   releasePlan: tenant-pipeline1
   snapshot: demo-snapshot

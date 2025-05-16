@@ -13,20 +13,14 @@ metadata:
     test.appstudio.openshift.io/pipelinerunfinishtime: "1694195405"
     test.appstudio.openshift.io/type: component
   name: demo-snapshot
-  namespace: dev-release
+  namespace: user-ns2
 spec:
   application: demo
   artifacts: {}
   components:
-  - containerImage: quay.io/hacbs-release-tests/dev-release-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce
+  - containerImage: quay.io/redhat-user-workloads/rh-ee-sconroy-tenant/sconroy-website@sha256:7adeca949fe95277c711db17fd7b5a8d081f07e48a0522916c5ac950133f76b1
     name: devfile-sample-python-basic
     source:
       git:
-        revision: fc2d04d48ee9c2a83d268c17a1504f28483b2177
-        url: https://github.com/scoheb/devfile-sample-python-basic
-  - containerImage: quay.io/hacbs-release-tests/dev-release-team-tenant/simple-python/devfile-sample-python-basic@sha256:199c12573aeec5a0761b4ebcd9769291dd4b94cc9ff15980c64d98e8a03d2dce
-    name: devfile-sample-python-advanced
-    source:
-      git:
-        revision: fc2d04d48ee9c2a83d268c17a1504f28483b2177
-        url: https://github.com/scoheb/devfile-sample-python-basic
+        revision: 1f03f5a151261dd98c291899454af14533ff49bc
+        url: https://github.com/seanconroy2021/sconroy-website

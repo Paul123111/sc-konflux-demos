@@ -2,11 +2,11 @@ apiVersion: appstudio.redhat.com/v1alpha1
 kind: ReleasePlanAdmission
 metadata:
   name: managed-pipeline
-  namespace: managed-releng
+  namespace: managed-ns2
 spec:
   applications:
     - demo
-  origin: dev-release
+  origin: user-ns2
   pipeline:
     pipelineRef:
       resolver: git
@@ -16,15 +16,9 @@ spec:
         - name: revision
           value: main
         - name: pathInRepo
-          value: RELEASE-1384/pipelines/managed-pipeline.yaml
+          value: RELEASE-1053/pipeline/pipeline.yaml
+    params:
+      - name: released_version
+        value: 1.1.0
     serviceAccountName: release-service-account
-    taskRunSpecs:
-      - pipelineTaskName: collect-data
-        computeResources:
-          limits:
-            cpu: "600m"
-            memory: "540Mi"
-          requests:
-            cpu: "250m"
-            memory: "256Mi"
   policy: mvp-policy

@@ -3,7 +3,7 @@ apiVersion: appstudio.redhat.com/v1alpha1
 kind: EnterpriseContractPolicy
 metadata:
   name: mvp-policy
-  namespace: managed-releng
+  namespace: managed-ns2
 spec:
   description: Red Hat's enterprise requirements
   publicKey: |-
